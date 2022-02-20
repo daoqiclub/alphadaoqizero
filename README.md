@@ -1,4 +1,6 @@
-# AlphaGo Zero
+# AlphaDaoqi Zero
+
+[Modified from alphago zero to daoqi rule]
 
 This is a unofficial reimplementation in Keras (Tensorflow backend) of [AlphaGo Zero]
 It is work in progress. The aim is to have simple code.
