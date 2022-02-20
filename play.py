@@ -77,11 +77,9 @@ def capture_group(x, y, real_board, group=None):
 
     c = real_board[y][x]
     for dx, dy in dxdys:
-        nx = x + dx
-        ny = y + dy
+        nx = (x + dx) % SIZE # Modified to daoqi
+        ny = (y + dy) % SIZE # Modified to daoqi
         if (nx, ny) in group:
-            continue
-        if not(0 <= nx < SIZE and 0 <= ny < SIZE):
             continue
         dc = real_board[ny][nx]
         if dc == 0:
@@ -97,10 +95,8 @@ def take_stones(x, y, board):
     real_board = get_real_board(board)
     _player = 1 if board[0,0,0,-1] == 1 else -1
     for dx, dy in dxdys:  # We need to check capture
-        nx = x + dx
-        ny = y + dy
-        if not(0 <= nx < SIZE and 0 <= ny < SIZE):
-            continue
+        nx = (x + dx) % SIZE # Modified to daoqi
+        ny = (y + dy) % SIZE # Modified to daoqi
         if real_board[ny][nx] == 0:
             continue
         if real_board[ny][nx] == _player:
@@ -112,10 +108,8 @@ def take_stones(x, y, board):
                 board[0,_y,_x,1] = 0
                 real_board[_y][_x] = 0
     for dx, dy in dxdys + [(0, 0)]:  # We need to check self sucide.
-        nx = x + dx
-        ny = y + dy
-        if not(0 <= nx < SIZE and 0 <= ny < SIZE):
-            continue
+        nx = (x + dx) % SIZE # Modified to daoqi
+        ny = (y + dy) % SIZE # Modified to daoqi
         if real_board[ny][nx] == 0:
             continue
         if real_board[ny][nx] != _player:
